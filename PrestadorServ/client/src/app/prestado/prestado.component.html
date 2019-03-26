@@ -1,0 +1,50 @@
+<app-title-bar titulo="Serviços prestados" descricao="Tela de cadastro de serviços prestados"></app-title-bar>
+
+<div class="container">
+  <form [formGroup]="form">
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="idFornecedor">Fornecedor</label>
+        <select formControlName="idFornecedor" id="idFornecedor" class="custom-select"></select>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label for="idCliente">Cliente</label>
+        <select formControlName="idCliente" id="idCliente" class="custom-select"></select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="dataAtendimentoServicoPrestado">Data de Atendimento</label>
+        <div class="form-group">
+          <div class="input-group">
+            <input type="datetime" formControlName="dataAtendimentoServicoPrestado" id="dataAtendimentoServicoPrestado"
+              ngbDatepicker #d="ngbDatepicker" class="form-control" placeholder="__/__/____" readonly>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label for="valorServicoPrestado">Valor do serviço</label>
+        <input type="text" formControlName="valorServicoPrestado" class="form-control">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-8 mb-3">
+        <label for="descricaoServicoPrestado">Descrição do serviço</label>
+        <textarea formControlName="descricaoServicoPrestado" class="form-control" id="descricaoServicoPrestado"
+          cols="30" rows="5"></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Lançar</button>
+  </form>
+
+  {{ form.value | json }}
+  {{ form.valid | json }}
+</div>
