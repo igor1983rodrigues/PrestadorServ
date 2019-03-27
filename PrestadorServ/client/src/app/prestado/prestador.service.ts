@@ -5,7 +5,7 @@ import { IBaseService } from '../utils/ibase.service';
 import { GeneralConfig } from '../config/generic.config';
 
 @Injectable({providedIn: 'root'})
-export class PrestadoService implements IBaseService {
+export class PrestadoService implements IBaseService<any> {
 
     getPathApiService: string = `${GeneralConfig.WEBAPI_URL}/api/prestado`;
 

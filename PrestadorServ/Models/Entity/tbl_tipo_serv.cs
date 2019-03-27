@@ -9,7 +9,6 @@ namespace PrestadorServ.Models.Entity
     public partial class tbl_tipo_serv
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id_tipo_serv { get; set; }
 
         [Required]

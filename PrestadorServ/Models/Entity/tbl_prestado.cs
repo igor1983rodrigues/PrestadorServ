@@ -6,7 +6,7 @@ namespace PrestadorServ.Models.Entity
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class tbl_prestado
+    public partial class ServicoPrestado
     {
         [Key]
         [Column(Order = 0)]
@@ -28,7 +28,7 @@ namespace PrestadorServ.Models.Entity
         [Column(TypeName = "money")]
         public decimal valor_prestado { get; set; }
 
-        public virtual tbl_cliente tbl_cliente { get; set; }
+        public virtual Cliente tbl_cliente { get; set; }
 
         public virtual tbl_fornecedor tbl_fornecedor { get; set; }
     }

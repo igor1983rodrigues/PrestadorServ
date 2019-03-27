@@ -11,11 +11,10 @@ namespace PrestadorServ.Models.Entity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbl_fornecedor()
         {
-            tbl_prestado = new HashSet<tbl_prestado>();
+            tbl_prestado = new HashSet<ServicoPrestado>();
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id_fornecedor { get; set; }
 
         [Required]
@@ -23,7 +22,7 @@ namespace PrestadorServ.Models.Entity
         public string nome_fornecedor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_prestado> tbl_prestado { get; set; }
+        public virtual ICollection<ServicoPrestado> tbl_prestado { get; set; }
 
         public virtual tbl_usuario tbl_usuario { get; set; }
     }

@@ -7,10 +7,11 @@
         <label for="idFornecedor">Fornecedor</label>
         <select formControlName="idFornecedor" id="idFornecedor" class="custom-select"></select>
       </div>
-
       <div class="col-md-4 mb-3">
         <label for="idCliente">Cliente</label>
-        <select formControlName="idCliente" id="idCliente" class="custom-select"></select>
+        <select formControlName="idCliente" id="idCliente" class="custom-select" [(ngModel)]="modelo.idCliente">
+          <option *ngFor="let item of clienteList" [value]="item.idCliente">{{ item.nomeCliente }}</option>
+        </select>
       </div>
     </div>
 

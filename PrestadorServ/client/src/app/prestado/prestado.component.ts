@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PrestadoService } from './prestador.service';
 import { ClienteService } from '../cliente/cliente.service';
 import { FornecedorService } from '../fornecedor/fornecedor.service';
+import { Cliente } from '../model/cliente.model';
 
 @Component({
   selector: 'app-prestado',
@@ -15,7 +16,7 @@ export class PrestadoComponent implements OnInit {
  
   form: FormGroup;
   modelo: any = {};
-  clienteList: any[];
+  clienteList: Cliente[];
   fornecedorList: any[];
 
   constructor(
