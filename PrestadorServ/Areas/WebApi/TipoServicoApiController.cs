@@ -1,5 +1,6 @@
-﻿using PrestadorServ.Models.Entity;
+using PrestadorServ.Models.Entity;
 using PrestadorServ.Models.IDao;
+using PrestadorServ.Properties;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -7,14 +8,14 @@ using System.Web.Http;
 
 namespace PrestadorServ.Areas.WebApi
 {
-    [RoutePrefix("api/fornecedor")]
-    public class FornecedorApiController : ApiController
+    [RoutePrefix("api/tiposervico")]
+    public class TipoServicoApiController : ApiController
     {
-        private IFornecedorDao iFornecedorDao;
+        private ITipoServicoDao iTipoServicoDao;
 
-        public FornecedorApiController(IFornecedorDao iFornecedorDao)
+        public TipoServicoApiController(ITipoServicoDao iTipoServicoDao)
         {
-            this.iFornecedorDao = iFornecedorDao;
+            this.iTipoServicoDao = iTipoServicoDao;
         }
 
         [HttpGet]
@@ -23,7 +24,7 @@ namespace PrestadorServ.Areas.WebApi
         {
             try
             {
-                IEnumerable<Fornecedor> res = await Task.Run(() => iFornecedorDao.ObterTodos(Properties.Resources.ProducaoConn));
+                IEnumerable<TipoServico> res = await Task.Run(() => iTipoServicoDao.ObterTodos(Resources.ProducaoConn));
                 return Ok(res);
             }
             catch (Exception ex)
@@ -38,7 +39,7 @@ namespace PrestadorServ.Areas.WebApi
         {
             try
             {
-                var res = await Task.Run(() => new  { id = id, nome = "teste", diferencial = "não sei" });
+                var res = await Task.Run(() => new { id = 0, nome = "teste", diferencial = "n�o sei" });
                 return Ok(res);
             }
             catch (Exception ex)
@@ -54,7 +55,8 @@ namespace PrestadorServ.Areas.WebApi
             try
             {
                 await Task.Run(() => Console.WriteLine(obj));
-                return Ok(new {
+                return Ok(new
+                {
                     Message = "TUdo deu certo!"
                 });
             }

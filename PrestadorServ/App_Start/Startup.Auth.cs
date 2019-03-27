@@ -15,6 +15,10 @@ namespace PrestadorServ
         public static void Configurar(this Container container)
         {
             container.Register<IClienteDao, ClienteDao>();
+            container.Register<IFornecedorDao, FornecedorDao>();
+            container.Register<IServicoPrestadoDao, ServicoPrestadoDao>();
+            container.Register<ITipoServicoDao, TipoServicoDao>();
+            container.Register<IUsuarioDao, UsuarioDao>();
         }
     }
 

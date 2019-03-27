@@ -206,19 +206,34 @@
     <Compile Include="Areas\WebApi\ClienteApiController.cs" />
     <Compile Include="Areas\WebApi\FornecedorApiController.cs" />
     <Compile Include="Areas\WebApi\ServicoPrestadoApiController.cs" />
+    <Compile Include="Areas\WebApi\TipoServicoApiController.cs" />
     <Compile Include="Areas\WebApi\UsuarioPrestadoApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bo\BusinessObject.cs" />
+    <Compile Include="Models\Dao\FornecedorDao.cs" />
     <Compile Include="Models\Dao\ClienteDao.cs" />
+    <Compile Include="Models\Dao\ServicoPrestadoDao.cs" />
+    <Compile Include="Models\Dao\TipoServicoDao.cs" />
+    <Compile Include="Models\Dao\UsuarioDao.cs" />
     <Compile Include="Models\Entity\Cliente.cs" />
-    <Compile Include="Models\Entity\tbl_fornecedor.cs" />
-    <Compile Include="Models\Entity\tbl_prestado.cs" />
-    <Compile Include="Models\Entity\tbl_tipo_serv.cs" />
-    <Compile Include="Models\Entity\tbl_usuario.cs" />
+    <Compile Include="Models\Entity\Fornecedor.cs" />
+    <Compile Include="Models\Entity\ServicoPrestado.cs" />
+    <Compile Include="Models\Entity\TipoServico.cs" />
+    <Compile Include="Models\Entity\Usuario.cs" />
+    <Compile Include="Models\IDao\ITipoServicoDao.cs" />
+    <Compile Include="Models\IDao\IServicoPrestadoDao.cs" />
+    <Compile Include="Models\IDao\IUsuarioDao.cs" />
+    <Compile Include="Models\IDao\IFornecedorDao.cs" />
     <Compile Include="Models\IDao\IClienteDao.cs" />
+    <Compile Include="Models\Resources\ServicoPrestadoSql.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServicoPrestadoSql.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -305,8 +320,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Bo\" />
-    <Folder Include="Models\Resources\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -327,6 +340,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Models\Resources\ServicoPrestadoSql.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServicoPrestadoSql.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

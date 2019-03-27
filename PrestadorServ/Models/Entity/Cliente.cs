@@ -4,7 +4,7 @@ namespace PrestadorServ.Models.Entity
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("tbl_cliente", Schema = "dbo")]
-    public partial class Cliente
+    public class Cliente
     {
         [Key]
         [Column("id_cliente")]

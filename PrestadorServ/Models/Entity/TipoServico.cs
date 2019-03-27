@@ -6,17 +6,16 @@ namespace PrestadorServ.Models.Entity
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class tbl_tipo_serv
+    [Table("tbl_tipo_serv", Schema = "dbo")]
+    public class TipoServico
     {
         [Key]
-        public int id_tipo_serv { get; set; }
+        [Column("id_tipo_serv")]
+        public int IdTipoServico { get; set; }
 
         [Required]
+        [Column("nome_tipo_serv")]
         [StringLength(32)]
-        public string nome_tipo_serv { get; set; }
-
-        public virtual tbl_tipo_serv tbl_tipo_serv1 { get; set; }
-
-        public virtual tbl_tipo_serv tbl_tipo_serv2 { get; set; }
+        public string NomeTipoServico { get; set; }
     }
 }

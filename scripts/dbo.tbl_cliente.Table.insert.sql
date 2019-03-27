@@ -5,7 +5,7 @@ INSERT INTO [dbo].[tbl_cliente]
            ([nome_cliente]
            ,[bairro_cliente]
            ,[cidade_cliente]
-           ,[cliente_uf])
+           ,[uf_cliente])
            select 'Cliente 1', 'Centro', 'Jaraguá do Sul', 'SC'
 		   union
 		   select 'Cliente 2', 'Centro', 'Blumenau', 'SC'
