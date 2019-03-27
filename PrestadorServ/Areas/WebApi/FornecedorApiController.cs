@@ -1,4 +1,7 @@
-﻿using System;
+﻿using PrestadorServ.Models.Entity;
+using PrestadorServ.Models.IDao;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -7,13 +10,20 @@ namespace PrestadorServ.Areas.WebApi
     [RoutePrefix("api/fornecedor")]
     public class FornecedorApiController : ApiController
     {
+        private IFornecedorDao iFornecedorDao;
+
+        public FornecedorApiController(IFornecedorDao iFornecedorDao)
+        {
+            this.iFornecedorDao = iFornecedorDao;
+        }
+
         [HttpGet]
         [Route("")]
         public async Task<IHttpActionResult> GetListaAsync()
         {
             try
             {
-                string[] res = await Task.Run(() => new string[] { "entrou" });
+                IEnumerable<Fornecedor> res = await Task.Run(() => iFornecedorDao.ObterTodos(Properties.Resources.ProducaoConn));
                 return Ok(res);
             }
             catch (Exception ex)

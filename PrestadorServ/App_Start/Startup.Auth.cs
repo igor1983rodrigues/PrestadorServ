@@ -1,5 +1,7 @@
 ﻿using Microsoft.Owin.Cors;
 using Owin;
+using PrestadorServ.Models.Dao;
+using PrestadorServ.Models.IDao;
 using SimpleInjector;
 using SimpleInjector.Integration.Web.Mvc;
 using System.Reflection;
@@ -8,16 +10,23 @@ using System.Web.Mvc;
 
 namespace PrestadorServ
 {
-    internal static class StartupExtensao {
-        public static void Configurar(this Container container) {
-
+    internal static class StartupExtensao
+    {
+        public static void Configurar(this Container container)
+        {
+            container.Register<IClienteDao, ClienteDao>();
+            container.Register<IFornecedorDao, FornecedorDao>();
+            container.Register<IServicoPrestadoDao, ServicoPrestadoDao>();
+            container.Register<ITipoServicoDao, TipoServicoDao>();
+            container.Register<IUsuarioDao, UsuarioDao>();
         }
     }
 
     public partial class Startup
     {
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
-        public void ConfigureAuth(IAppBuilder app) {
+        public void ConfigureAuth(IAppBuilder app)
+        {
             var container = new Container();
 
             container.Configurar();

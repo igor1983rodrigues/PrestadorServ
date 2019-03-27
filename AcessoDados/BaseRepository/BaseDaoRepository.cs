@@ -15,10 +15,18 @@ namespace AcessoDados.BaseRepository
     {
         protected DbConnection ObterConexao(string strConexao)
         {
-            string strConnectionString = ConfigurationManager.ConnectionStrings[strConexao].ConnectionString;
-            SimpleCRUD.SetDialect(SimpleCRUD.Dialect.PostgreSQL);
-            return new NpgsqlConnection(strConnectionString);
-            //return new SqlConnection(strConnectionString);
+            ConnectionStringSettings connString = ConfigurationManager.ConnectionStrings[strConexao];
+            string strConnectionString = connString.ConnectionString;
+            if ("System.Data.SqlClient".Equals(connString.ProviderName))
+            {
+                SimpleCRUD.SetDialect(SimpleCRUD.Dialect.SQLServer);
+                return new SqlConnection(strConnectionString);
+            }
+            else
+            {
+                SimpleCRUD.SetDialect(SimpleCRUD.Dialect.PostgreSQL);
+                return new NpgsqlConnection(strConnectionString);
+            }
         }
 
         public virtual void Alterar(T model, out string mensagem, string strConexao)

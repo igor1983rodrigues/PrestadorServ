@@ -6,6 +6,7 @@ import { TitleBarComponent } from './title-bar/title-bar.component';
 @NgModule({
   declarations: [TitleBarComponent],
   imports: [CommonModule],
-  exports: [TitleBarComponent]
+  exports: [TitleBarComponent],
+  entryComponents: []
 })
 export class SharedModule { }
