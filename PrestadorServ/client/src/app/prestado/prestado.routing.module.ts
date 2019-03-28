@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Router, Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { PrestadoComponent } from './prestado.component';
 
 const prestadoRouters: Routes = [{

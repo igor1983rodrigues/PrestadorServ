@@ -7,7 +7,6 @@ import { PrestadoComponent } from './prestado.component';
 import { PrestadoRoutingModule } from './prestado.routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ClienteService } from '../cliente/cliente.service';
 import { PrestadoService } from './prestador.service';
 
 @NgModule({
@@ -23,4 +22,11 @@ import { PrestadoService } from './prestador.service';
   exports: [PrestadoComponent],
   providers: [PrestadoService]
 })
-export class PrestadoModule { }
+export class PrestadoModule { 
+  /**
+   *
+   */
+  constructor() {
+    console.log('PrestadoModule');    
+  }
+}
