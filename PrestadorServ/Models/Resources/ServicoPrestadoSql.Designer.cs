@@ -61,6 +61,33 @@ namespace PrestadorServ.Models.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to dbo.proc_fornecedor_sem_servico.
+        /// </summary>
+        internal static string FornecedoresSemResultados {
+            get {
+                return ResourceManager.GetString("FornecedoresSemResultados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dbo.proc_media_servicos.
+        /// </summary>
+        internal static string MediaServicosPorFornecedorTipo {
+            get {
+                return ResourceManager.GetString("MediaServicosPorFornecedorTipo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dbo.proc_maiores_clientes.
+        /// </summary>
+        internal static string MeloresConsumidores {
+            get {
+                return ResourceManager.GetString("MeloresConsumidores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to select	ServicoPrestado.id_prestado as IdServicoPrestado,
         ///		ServicoPrestado.id_cliente as IdCliente,
         ///		ServicoPrestado.id_fornecedor as IdFornecedor,
