@@ -22,6 +22,7 @@ namespace PrestadorServ.Areas.WebApi
         [HttpGet]
         [Route("")]
         public async Task<IHttpActionResult> GetLista(
+            string fornecedor = null,
             string cliente = null,
             string uf = null,
             string cidade = null,
@@ -36,15 +37,54 @@ namespace PrestadorServ.Areas.WebApi
             {
                 IEnumerable<ServicoPrestado> res = await Task.Run(() => iServicoPrestadoDao.ObterServicoPrestado(new
                 {
-                    cliente = cliente,
-                    uf = uf,
-                    cidade = cidade,
-                    bairro = bairro,
-                    tipoServ = tipoServ,
-                    valMin = valMin,
-                    valMax = valMax,
-                    dtMin = dtMin,
-                    dtMax = dtMax
+                    Fornecedor = fornecedor,
+                    Cliente = cliente,
+                    Uf = uf,
+                    Cidade = cidade,
+                    Bairro = bairro,
+                    TipoServ = tipoServ,
+                    ValMin = valMin,
+                    ValMax = valMax,
+                    DtMin = dtMin,
+                    DtMax = dtMax
+                }, Properties.Resources.ProducaoConn));
+
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("fornecedor/{idFornecedor:int}")]
+        public async Task<IHttpActionResult> GetListaPorFornecedor(
+            int idFornecedor,
+            string cliente = null,
+            string uf = null,
+            string cidade = null,
+            string bairro = null,
+            string tipoServ = null,
+            decimal? valMin = null,
+            decimal? valMax = null,
+            DateTime? dtMin = null,
+            DateTime? dtMax = null)
+        {
+            try
+            {
+                IEnumerable<ServicoPrestado> res = await Task.Run(() => iServicoPrestadoDao.ObterServicoPrestado(new
+                {
+                    IdFornecedor = idFornecedor,
+                    Cliente = cliente,
+                    Uf = uf,
+                    Cidade = cidade,
+                    Bairro = bairro,
+                    TipoServ = tipoServ,
+                    ValMin = valMin,
+                    ValMax = valMax,
+                    DtMin = dtMin,
+                    DtMax = dtMax
                 }, Properties.Resources.ProducaoConn));
 
                 return Ok(res);
@@ -61,7 +101,52 @@ namespace PrestadorServ.Areas.WebApi
         {
             try
             {
-                var res = await Task.Run(() => new { id = 0, nome = "teste", diferencial = "não sei" });
+                ServicoPrestado res = await Task.Run(() => iServicoPrestadoDao.ObterPorChave(id, Properties.Resources.ProducaoConn));
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("maioresconsumidores")]
+        public async Task<IHttpActionResult> ListarMelhoresClientesNoAno()
+        {
+            try
+            {
+                var res = await Task.Run(() => iServicoPrestadoDao.MeloresConsumidores(Properties.Resources.ProducaoConn));
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("fornecedoressemresultado")]
+        public async Task<IHttpActionResult> ListarFornecedoresSemResultados()
+        {
+            try
+            {
+                var res = await Task.Run(() => iServicoPrestadoDao.FornecedoresSemResultados(Properties.Resources.ProducaoConn));
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("mediafornecedorestiposervico")]
+        public async Task<IHttpActionResult> ListarMediaServicosPorFornecedorTipo()
+        {
+            try
+            {
+                var res = await Task.Run(() => iServicoPrestadoDao.MediaServicosPorFornecedorTipo(Properties.Resources.ProducaoConn));
                 return Ok(res);
             }
             catch (Exception ex)
@@ -83,7 +168,7 @@ namespace PrestadorServ.Areas.WebApi
                 {
                     throw new Exception(mensagem);
                 }
-                return Ok(new { Id = id, Message = mensagem });
+                return Ok(new { Id = id, Message = "Registro salvo com sucesso!" });
             }
             catch (Exception ex)
             {
@@ -92,16 +177,20 @@ namespace PrestadorServ.Areas.WebApi
         }
 
         [HttpPut]
-        [Route("")]
-        public async Task<IHttpActionResult> PutItem([FromBody]object obj)
+        [Route("{id:int}")]
+        public async Task<IHttpActionResult> Update(int id, [FromBody]JObject modelo)
         {
             try
             {
-                await Task.Run(() => Console.WriteLine(obj));
-                return Ok(new
+                mensagem = null;
+                ServicoPrestado servicoPrestado = modelo.ToObject<ServicoPrestado>();
+                servicoPrestado.IdServicoPrestado = id;
+                await Task.Run(() => iServicoPrestadoDao.Alterar(servicoPrestado, out mensagem, Properties.Resources.ProducaoConn));
+                if (!string.IsNullOrEmpty(mensagem))
                 {
-                    Message = "TUdo deu certo!"
-                });
+                    throw new Exception(mensagem);
+                }
+                return Ok(new { Id = id, Message = "Registro alterado com sucesso!" });
             }
             catch (Exception ex)
             {
@@ -110,16 +199,19 @@ namespace PrestadorServ.Areas.WebApi
         }
 
         [HttpDelete]
-        [Route("")]
-        public async Task<IHttpActionResult> DeleteItem([FromBody]object obj)
+        [Route("{id:int}")]
+        public async Task<IHttpActionResult> DeleteItem(int id)
         {
             try
             {
-                await Task.Run(() => Console.WriteLine(obj));
-                return Ok(new
+                mensagem = null;
+                await Task.Run(() => iServicoPrestadoDao.Excluir(id, out mensagem, Properties.Resources.ProducaoConn));
+
+                if (!string.IsNullOrEmpty(mensagem))
                 {
-                    Message = "TUdo deu certo!"
-                });
+                    throw new Exception(mensagem);
+                }
+                return Ok(new { Id = id, Message = "Registro excluído com sucesso!" });
             }
             catch (Exception ex)
             {

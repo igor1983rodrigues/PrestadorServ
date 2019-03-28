@@ -50,25 +50,33 @@ namespace PrestadorServ.Models.Bo
             sb.AppendLine(target.Where(parametros, (campo, valor) =>
             {
 
-                if ("cliente".Equals(campo, StringComparison.OrdinalIgnoreCase))
+                if ("IdFornecedor".Equals(campo, StringComparison.OrdinalIgnoreCase))
                 {
-                    return string.Format("and   Cliente.nome_cliente like '%' + @{0} + '%'", campo);
+                    return string.Format("and   UPPER(Fornecedor.id_fornecedor) = @{0}", campo);
                 }
-                else if ("uf".Equals(campo, StringComparison.OrdinalIgnoreCase))
+                else if ("Fornecedor".Equals(campo, StringComparison.OrdinalIgnoreCase))
                 {
-                    return string.Format("and   Cliente.uf_cliente like '%' + @{0} + '%'", campo);
+                    return string.Format("and   UPPER(Fornecedor.nome_fornecedor) like '%' +UPPER( @{0}) + '%'", campo);
                 }
-                else if ("cidade".Equals(campo, StringComparison.OrdinalIgnoreCase))
+                else if ("Cliente".Equals(campo, StringComparison.OrdinalIgnoreCase))
                 {
-                    return string.Format("and   Cliente.cidade_cliente like '%' + @{0} + '%'", campo);
+                    return string.Format("and   UPPER(Cliente.nome_cliente) like '%' +UPPER( @{0}) + '%'", campo);
                 }
-                else if ("bairro".Equals(campo, StringComparison.OrdinalIgnoreCase))
+                else if ("Uf".Equals(campo, StringComparison.OrdinalIgnoreCase))
                 {
-                    return string.Format("and   Cliente.bairro_cliente like '%' + @{0} + '%'", campo);
+                    return string.Format("and   UPPER(Cliente.uf_cliente) like '%' +UPPER( @{0}) + '%'", campo);
                 }
-                else if ("tipoServ".Equals(campo, StringComparison.OrdinalIgnoreCase))
+                else if ("Cidade".Equals(campo, StringComparison.OrdinalIgnoreCase))
                 {
-                    return string.Format("and   TipoServico.nome_tipo_serv like '%' + @{0} + '%'", campo);
+                    return string.Format("and   UPPER(Cliente.cidade_cliente) like '%' +UPPER( @{0}) + '%'", campo);
+                }
+                else if ("Bairro".Equals(campo, StringComparison.OrdinalIgnoreCase))
+                {
+                    return string.Format("and   UPPER(Cliente.bairro_cliente) like '%' +UPPER( @{0}) + '%'", campo);
+                }
+                else if ("TipoServ".Equals(campo, StringComparison.OrdinalIgnoreCase))
+                {
+                    return string.Format("and   UPPER(TipoServico.nome_tipo_serv) like '%' +UPPER( @{0}) + '%'", campo);
                 }
 
                 return "";
@@ -76,30 +84,30 @@ namespace PrestadorServ.Models.Bo
 
             var map = parametros.ToDictionary();
 
-            if (map.ContainsKey("valMin") && map.ContainsKey("valMax") && map["valMin"] != null && map["valMax"] != null)
+            if (map.ContainsKey("ValMin") && map.ContainsKey("ValMax") && map["ValMin"] != null && map["ValMax"] != null)
             {
-                sb.AppendLine("and  ServicoPrestado.valor_prestado between @valMin and @valMax");
+                sb.AppendLine("and  ServicoPrestado.valor_prestado between @ValMin and @ValMax");
             }
-            else if (map.ContainsKey("valMin") && map["valMin"] != null)
+            else if (map.ContainsKey("ValMin") && map["ValMin"] != null)
             {
-                sb.AppendLine("and  ServicoPrestado.valor_prestado >= @valMin");
+                sb.AppendLine("and  ServicoPrestado.valor_prestado >= @ValMin");
             }
-            else if (map.ContainsKey("valMax") && map["valMax"] != null)
+            else if (map.ContainsKey("ValMax") && map["ValMax"] != null)
             {
-                sb.AppendLine("and  ServicoPrestado.valor_prestado <= @valMax");
+                sb.AppendLine("and  ServicoPrestado.valor_prestado <= @ValMax");
             }
 
-            if (map.ContainsKey("dtMin") && map.ContainsKey("dtMax") && map["dtMin"] != null && map["dtMax"] != null)
+            if (map.ContainsKey("DtMin") && map.ContainsKey("DtMax") && map["DtMin"] != null && map["DtMax"] != null)
             {
-                sb.AppendLine("and  ServicoPrestado.dt_atend_prestado between @dtMin and @dtMax");
+                sb.AppendLine("and  ServicoPrestado.dt_atend_prestado between @DtMin and @DtMax");
             }
-            else if (map.ContainsKey("dtMin") && map["dtMin"] != null)
+            else if (map.ContainsKey("DtMin") && map["DtMin"] != null)
             {
-                sb.AppendLine("and  ServicoPrestado.dt_atend_prestado >= @dtMin");
+                sb.AppendLine("and  ServicoPrestado.dt_atend_prestado >= @DtMin");
             }
-            else if (map.ContainsKey("dtMax") && map["dtMax"] != null)
+            else if (map.ContainsKey("DtMax") && map["DtMax"] != null)
             {
-                sb.AppendLine("and  ServicoPrestado.dt_atend_prestado >= @dtMax");
+                sb.AppendLine("and  ServicoPrestado.dt_atend_prestado >= @DtMax");
             }
 
             return sb.ToString();
