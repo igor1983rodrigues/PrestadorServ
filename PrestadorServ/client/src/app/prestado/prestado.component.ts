@@ -8,6 +8,9 @@ import { Cliente } from '../model/cliente.entity';
 import { Fornecedor } from '../model/Fornecedor.entity';
 import { TipoServico } from '../model/tipo-servico.entity';
 import { TipoServicoService } from '../tipoServico/tipo-servico.service';
+import { Subscription } from 'rxjs';
+import { PrestadoService } from './prestado.service';
+import { ServicoPrestado } from '../model/servico-prestado.entity';
 
 @Component({
   selector: 'app-prestado',
@@ -26,7 +29,8 @@ export class PrestadoComponent implements OnInit {
     private formBuilder: FormBuilder,
     private clienteService: ClienteService,
     private tipoServicoService: TipoServicoService,
-    private fornecedorService: FornecedorService
+    private fornecedorService: FornecedorService,
+    private servicoPrestadoService: PrestadoService
   ) { }
 
   ngOnInit() {
@@ -49,4 +53,20 @@ export class PrestadoComponent implements OnInit {
     });
   }
 
+    salvar = ():void => {
+      let modelo: ServicoPrestado = {
+        idServicoPrestado: null,
+        idCliente: this.form.value.idCliente,
+        idFornecedor: this.form.value.idFornecedor,
+        idTipoServico: this.form.value.idTipoServico,
+        dataAtendimentoServicoPrestado: new Date(`${this.form.value.dataAtendimentoServicoPrestado}T${this.form.value.horaAtendimentoServicoPrestado}`),
+        descricaoServicoPrestado: this.form.value.descricaoServicoPrestado,
+        valorServicoPrestado: this.form.value.valorServicoPrestado,
+        cliente: null,
+        fornecedor: null,
+        tipoServico: null
+      };
+      console.log(modelo);
+      // this.servicoPrestadoService.salvar(modelo);
+    };
 }

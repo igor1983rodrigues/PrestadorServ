@@ -1,7 +1,7 @@
 <app-title-bar titulo="Serviços prestados" descricao="Tela de cadastro de serviços prestados"></app-title-bar>
 
 <div class="container">
-  <form [formGroup]="form">
+  <form [formGroup]="form" (submit)="salvar()">
     <div class="form-row">
       <div class="col-md-4 mb-3">
         <label for="idFornecedor">Fornecedor</label>
