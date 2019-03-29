@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 // import localePt from '@angular/common/locales/pt';
 // import localePtExtra from '@angular/common/locales/extra/pt';
-import { PrestadoService } from './prestador.service';
 import { ClienteService } from '../cliente/cliente.service';
 import { FornecedorService } from '../fornecedor/fornecedor.service';
 import { Cliente } from '../model/cliente.entity';

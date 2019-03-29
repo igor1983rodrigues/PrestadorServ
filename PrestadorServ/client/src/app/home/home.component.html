@@ -1,0 +1,76 @@
+<app-title-bar titulo="Home" descricao="Tela inicial"></app-title-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="container col-md mb-1">
+      <div class="rounded p-3 bg-dark text-white">
+        <h6 class="h6">Os 3 clientes que mais gastaram em serviços por mês no ano atual</h6>
+        <table class="table bg-white">
+          <tbody>
+            <tr *ngFor="let mesEstatistica of estatisticaClientes">
+              <th>{{ mesEstatistica.mes }}</th>
+              <td>
+                <table class="table">
+                  <tr *ngFor="let dadoEstatistica of mesEstatistica.dados">
+                    <td>
+                      {{ dadoEstatistica.cliente.nomeCliente }}
+                    </td>
+                    <td> {{ dadoEstatistica.total | currency:'R$':true }} </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="container col-md mb-1">
+      <div class="rounded p-3 bg-dark text-white">
+        <h6 class="h6">Lista de fornecedores sem prestar atendimento por mês no ano atual</h6>
+        <table class="table bg-white">
+          <tbody>
+            <tr *ngFor="let fornecedorSemResultado of fornecedoresSemResultado">
+              <th>
+                {{ fornecedorSemResultado.mes }}
+              </th>
+              <td>
+                <table>
+                  <tr *ngFor="let fornecedor of fornecedorSemResultado.dados">
+                    <td>{{ fornecedor.nomeFornecedor }}</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="container col-md mb-1">
+        <div class="rounded p-3 bg-dark text-white">
+          <h6 class="h6">Média de valor cobrado por fornecedor e tipo de serviço</h6>
+          <table class="table bg-white">
+            <tbody>
+              
+              <tr *ngFor="let mediaEstatistica of mediasEstatistica">
+                <th>
+                  {{ mediaEstatistica.mes }}
+                </th>
+                <td>
+                  <table>
+                    <tr *ngFor="let dadosMediaEstatistica of mediaEstatistica.dados">
+                      <td>{{ dadosMediaEstatistica?.fornecedor?.nomeFornecedor }}</td>
+                      <td>{{ dadosMediaEstatistica?.tipoServico?.nomeTipoServico }}</td>
+                      <td>{{ dadosMediaEstatistica?.media | currency:'R$' }}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>

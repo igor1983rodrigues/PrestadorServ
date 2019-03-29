@@ -60,16 +60,17 @@ namespace PrestadorServ.Models.Dao
                 new string[] { "IdFornecedor", "IdTipoServico" },
                 CommandType.StoredProcedure);
 
-            return res;
-            //    .GroupBy(t => t.Mes).Select(t => new
-            //{
-            //    Mes = t.Key,
-            //    Dados = t.Select(u => new
-            //    {
-            //        u.Total,
-            //        u.Cliente
-            //    })
-            //});
+            return res.GroupBy(t => t.Mes).Select(t => new
+            {
+                Mes = t.Key,
+                Dados = t.Where(u => u.Fornecedor != null && u.TipoServico != null)
+                .Select(u => new
+                {
+                    u.Media,
+                    u.Fornecedor,
+                    u.TipoServico
+                })
+            });
         }
 
         public IEnumerable<object> MeloresConsumidores(string strConexao)
