@@ -1,0 +1,124 @@
+<app-title-bar titulo="Serviços prestados" descricao="Lista de serviços prestados"></app-title-bar>
+
+<div class="container">
+  <div class="container bg-dark text-white p-3 mb-3 rounded">
+    <h6 class="h6">Filtro</h6>
+    <div class="form-row">
+      <div class="form-group col">
+        <label for="filtroCliente">Cliente</label>
+        <input [(ngModel)]="parametros.cliente" type="text" class="form-control" id="filtroCliente"
+          aria-describedby="filtroCliente" placeholder="Cliente">
+      </div>
+
+      <div class="form-group col">
+        <label for="filtroTipoServico">Tipo de Serviço</label>
+        <input [(ngModel)]="parametros.tipoServ" type="text" class="form-control" id="filtroTipoServico"
+          aria-describedby="filtroTipoServico" placeholder="Tipo de Serviço">
+      </div>
+
+      <div class="form-group col">
+        <label for="filtroBairro">Bairro</label>
+        <input [(ngModel)]="parametros.bairro" type="text" class="form-control" id="filtroBairro"
+          aria-describedby="filtroBairro" placeholder="Bairro">
+      </div>
+
+      <div class="form-group col">
+        <label for="filtroCidade">Cidade</label>
+        <input [(ngModel)]="parametros.cidade" type="text" class="form-control" id="filtroCidade"
+          aria-describedby="filtroCidade" placeholder="Cidade">
+      </div>
+
+      <div class="form-group col-auto">
+        <label for="filtroUF">UF</label>
+        <select [(ngModel)]="parametros.uf" class="custom-select form-control" id="filtroUF"
+          aria-describedby="filtroUF">
+          <option value="">[SELECIONE]</option>
+          <option *ngFor="let item of ufs" [value]="item.key">{{ item.value }}</option>
+        </select>
+      </div>
+
+      <div class="form-group col-auto">
+        <label>&nbsp;</label>
+        <button type="button" class="btn btn-warning form-control" (click)="limparFiltro()">
+          <i class="fas fa-eraser mr-1"></i>Limpar
+        </button>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col">
+        <label for="filtroValorMinimo">Valor mínimo (R$)</label>
+        <input currencyMask [(ngModel)]="parametros.valMin" type="tel" class="form-control" id="filtroValorMinimo"
+          aria-describedby="filtroValorMinimo">
+      </div>
+
+      <div class="form-group col">
+        <label for="filtroValorMaximo">Valor máximo (R$)</label>
+        <input currencyMask [(ngModel)]="parametros.valMax" type="tel" class="form-control" id="filtroValorMaximo"
+          aria-describedby="filtroValorMaximo">
+      </div>
+
+      <div class="form-group col">
+        <label for="filtroDataMinima">Data mínima</label>
+        <input [(ngModel)]="parametros.dtMin" type="date" class="form-control" id="filtroDataMinima"
+          aria-describedby="filtroDataMinima">
+      </div>
+
+
+      <div class="form-group col">
+        <label for="filtroDataMaxima">Data máxima</label>
+        <input [(ngModel)]="parametros.dtMax" type="date" class="form-control" id="filtroDataMaxima"
+          aria-describedby="filtroDataMaxima">
+      </div>
+
+      <div class="form-group col-auto">
+        <label>&nbsp;</label>
+        <button type="button" class="btn btn-primary form-control" (click)="carregarLista()">
+          <i class="fas fa-filter mr-1"></i>Filtrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container rounded bg-dark p-3 mb-3">
+    <div class="mb-3 row">
+      <h4 class="h4 col text-white">Serviços prestados</h4>
+
+      <span class="col-auto text-right">
+        <a routerLink="add" class="btn btn-primary">
+          <i class="fas fa-plus mr-1"></i>Novo lançamento
+        </a>
+      </span>
+    </div>
+
+    <table class="table bg-white">
+      <thead>
+        <th>#</th>
+        <th>Cliente</th>
+        <th>Tipo</th>
+        <th>Valor</th>
+        <th>Data</th>
+        <th>Fornecedor</th>
+        <th>&nbsp;</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let servicoPrestado of servicoPrestadoList">
+          <th>{{ servicoPrestado.idServicoPrestado }}</th>
+          <td>{{ servicoPrestado.cliente.nomeCliente }}</td>
+          <td>{{ servicoPrestado.tipoServico.nomeTipoServico }}</td>
+          <td>{{ servicoPrestado.valorServicoPrestado | currency:'BRL':true }}</td>
+          <td>{{ servicoPrestado.dataAtendimentoServicoPrestado | date }}</td>
+          <td>{{ servicoPrestado.fornecedor.nomeFornecedor }}</td>
+          <td>
+            <a [routerLink]="[servicoPrestado.idServicoPrestado]" class="btn btn-success mr-1">
+              <i class="fas fa-edit"></i>
+            </a>
+            <button type="button" class="btn btn-danger">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
