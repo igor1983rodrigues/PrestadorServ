@@ -39,4 +39,12 @@ export class PrestadoListaComponent implements OnInit {
     .getList(this.parametros, res => this.servicoPrestadoList = res);
 
   limparFiltro = (): any => this.parametros = { uf: '' };
+
+  excluir = (id: number) => {
+    let pergunta: string = "Deseja realmente excluir este serviço prestado?";
+    if (confirm(pergunta)) {
+      this.servicoPrestadoService.excluir(id, res => alert(res.message));
+      this.carregarLista();
+    }
+  };
 }
