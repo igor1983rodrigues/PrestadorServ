@@ -293,6 +293,31 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Views\Home\3rdpartylicenses.txt" />
+    <Content Include="Views\Home\6.18ef973a93ead73af982.js" />
+    <Content Include="Views\Home\7.4984c641a6e0304db300.js" />
+    <Content Include="Views\Home\8.6bcae86f42cec2e9def3.js" />
+    <Content Include="Views\Home\assets\fontawesome\all.js" />
+    <Content Include="Views\Home\assets\fontawesome\all.min.js" />
+    <Content Include="Views\Home\assets\fontawesome\brands.js" />
+    <Content Include="Views\Home\assets\fontawesome\brands.min.js" />
+    <Content Include="Views\Home\assets\fontawesome\fontawesome.js" />
+    <Content Include="Views\Home\assets\fontawesome\fontawesome.min.js" />
+    <Content Include="Views\Home\assets\fontawesome\regular.js" />
+    <Content Include="Views\Home\assets\fontawesome\regular.min.js" />
+    <Content Include="Views\Home\assets\fontawesome\solid.js" />
+    <Content Include="Views\Home\assets\fontawesome\solid.min.js" />
+    <Content Include="Views\Home\assets\fontawesome\v4-shims.js" />
+    <Content Include="Views\Home\assets\fontawesome\v4-shims.min.js" />
+    <Content Include="Views\Home\common.b20dbc47421bdee244e8.js" />
+    <Content Include="Views\Home\es2015-polyfills.01deec5b2033b45aed7c.js" />
+    <Content Include="Views\Home\favicon.ico" />
+    <None Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\main.84d6c3cb09e35c09a67b.js" />
+    <Content Include="Views\Home\polyfills.481858ef51fe27531859.js" />
+    <Content Include="Views\Home\runtime.524a9dd4e12d06b318a1.js" />
+    <Content Include="Views\Home\scripts.201cd8c2534507b4525e.js" />
+    <Content Include="Views\Home\styles.ab5f1ccc98a9b4da89ad.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -305,7 +330,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -317,6 +341,8 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Home\assets\json\uf.json" />
+    <Content Include="Views\Home\_Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
