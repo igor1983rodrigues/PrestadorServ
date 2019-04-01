@@ -18,20 +18,33 @@ import { ServicoPrestado } from '../model/servico-prestado.entity';
   styleUrls: ['./prestado.component.css']
 })
 export class PrestadoComponent implements OnInit {
- 
+
   form: FormGroup;
-  modelo: any = {dataAtendimentoServicoPrestado: new Date()};
+  modelo: ServicoPrestado;
   clienteList: Cliente[];
   fornecedorList: Fornecedor[];
   tipoServicoList: TipoServico[];
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private clienteService: ClienteService,
     private tipoServicoService: TipoServicoService,
     private fornecedorService: FornecedorService,
     private servicoPrestadoService: PrestadoService
-  ) { }
+  ) {
+    this.modelo = {
+      idFornecedor: null,
+      dataAtendimentoServicoPrestado: new Date(),
+      idCliente: null,
+      idServicoPrestado: 0,
+      descricaoServicoPrestado: null,
+      idTipoServico: null,
+      valorServicoPrestado: null,
+      cliente: null,
+      fornecedor: null,
+      tipoServico: null
+    };
+  }
 
   ngOnInit() {
     //registerLocaleData(localePt, 'pt', localePtExtra);
@@ -53,20 +66,9 @@ export class PrestadoComponent implements OnInit {
     });
   }
 
-    salvar = ():void => {
-      let modelo: ServicoPrestado = {
-        idServicoPrestado: null,
-        idCliente: this.form.value.idCliente,
-        idFornecedor: this.form.value.idFornecedor,
-        idTipoServico: this.form.value.idTipoServico,
-        dataAtendimentoServicoPrestado: new Date(`${this.form.value.dataAtendimentoServicoPrestado}T${this.form.value.horaAtendimentoServicoPrestado}`),
-        descricaoServicoPrestado: this.form.value.descricaoServicoPrestado,
-        valorServicoPrestado: this.form.value.valorServicoPrestado,
-        cliente: null,
-        fornecedor: null,
-        tipoServico: null
-      };
-      console.log(modelo);
-      // this.servicoPrestadoService.salvar(modelo);
-    };
+  salvar = (): void => {
+    this.servicoPrestadoService.salvar(this.modelo, res => {
+      alert(res.message);
+    });
+  };
 }

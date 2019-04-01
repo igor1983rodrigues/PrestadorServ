@@ -31,4 +31,8 @@ export class PrestadoService implements IBaseService<ServicoPrestado> {
     getFornecedorSemResultadoEstatistica = <T>(callback: Function): Subscription => this.httpClient
         .get<T[]>(`${this.getPathApiService}/fornecedoressemresultado`)
         .subscribe((res: T[]) => callback(res));
+
+    salvar = (modelo: ServicoPrestado, callBack: Function): Subscription => this.httpClient
+        .post(this.getPathApiService, modelo)
+        .subscribe((res: any) => callBack(res));
 }

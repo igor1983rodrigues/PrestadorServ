@@ -50,7 +50,7 @@
 
       <div class="col-md-8 mb-3">
         <label for="descricaoServicoPrestado">Descrição do serviço</label>
-        <textarea formControlName="descricaoServicoPrestado" class="form-control" id="descricaoServicoPrestado"
+        <textarea formControlName="descricaoServicoPrestado" [(ngModel)]="modelo.descricaoServicoPrestado" class="form-control" id="descricaoServicoPrestado"
           cols="30" rows="5"></textarea>
       </div>
     </div>
@@ -58,5 +58,5 @@
     <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Lançar</button>
   </form>
 
-  <code>{{ form.value | json }}</code>
+  <code>{{ modelo | json }}</code>
 </div>
