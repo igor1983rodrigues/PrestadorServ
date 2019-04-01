@@ -1,7 +1,7 @@
 <app-title-bar titulo="Serviços prestados" descricao="Tela de cadastro de serviços prestados"></app-title-bar>
 
 <div class="container">
-  <form [formGroup]="form">
+  <form [formGroup]="form" (submit)="salvar()">
     <div class="form-row">
       <div class="col-md-4 mb-3">
         <label for="idFornecedor">Fornecedor</label>
@@ -45,18 +45,17 @@
         </div>
 
         <label for="valorServicoPrestado">Valor do serviço</label>
-        <input type="tel" formControlName="valorServicoPrestado" class="form-control">
+        <input type="tel" currencyMask  formControlName="valorServicoPrestado" [(ngModel)]="modelo.valorServicoPrestado" class="form-control">
       </div>
 
       <div class="col-md-8 mb-3">
         <label for="descricaoServicoPrestado">Descrição do serviço</label>
-        <textarea formControlName="descricaoServicoPrestado" class="form-control" id="descricaoServicoPrestado"
+        <textarea formControlName="descricaoServicoPrestado" [(ngModel)]="modelo.descricaoServicoPrestado" class="form-control" id="descricaoServicoPrestado"
           cols="30" rows="5"></textarea>
       </div>
     </div>
 
     <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Lançar</button>
+    <button type="button" class="btn btn-secondary ml-2" (click)="limparForm()">Limpar</button>
   </form>
-
-  <code>{{ form.value | json }}</code>
 </div>
