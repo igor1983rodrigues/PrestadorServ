@@ -9,14 +9,14 @@ namespace PrestadorServ
         public static void RegisterBundles(BundleCollection bundles)
         {
 
-            bundles.Add(new StyleBundle("~/style/angular").Include("~/Content/PrestadorServClient/styles.*"));
+            bundles.Add(new StyleBundle("~/style/angular").Include("~/site/styles.*"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                "~/Content/PrestadorServClient/runtime.*",
-                "~/Content/PrestadorServClient/es2015-*",
-                "~/Content/PrestadorServClient/polyfills.*",
-                "~/Content/PrestadorServClient/scripts.*",
-                "~/Content/PrestadorServClient/main.*"
+                "~/site/runtime.*",
+                "~/site/es2015-*",
+                "~/site/polyfills.*",
+                "~/site/scripts.*",
+                "~/site/main.*"
                 ));
             //bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
             //            "~/Scripts/jquery-{version}.js"));
